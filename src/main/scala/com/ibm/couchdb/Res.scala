@@ -71,4 +71,7 @@ object Res {
   case class Uuids(uuids: Seq[String])
 
   case class DocOk(ok: Boolean, id: String, rev: String)
+
+  case class ApiKeyOk(ok: Boolean, key: String, password: String)
+  
 }

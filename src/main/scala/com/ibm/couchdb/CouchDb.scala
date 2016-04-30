@@ -16,7 +16,7 @@
 
 package com.ibm.couchdb
 
-import com.ibm.couchdb.api.{Databases, Design, Documents, Query, Server}
+import com.ibm.couchdb.api._
 import com.ibm.couchdb.core.Client
 
 import scalaz.Scalaz._
@@ -30,9 +30,10 @@ class CouchDb private(
     https: Boolean,
     credentials: Option[(String, String)]) {
 
-  val client = new Client(Config(host, port, https, credentials))
-  val server = new Server(client)
-  val dbs    = new Databases(client)
+  val client  = new Client(Config(host, port, https, credentials))
+  val server  = new Server(client)
+  val dbs     = new Databases(client)
+  val apiKeys = new ApiKeys(client)
 
   private val memo = Memo.mutableHashMapMemo[(String, TypeMapping), CouchDbApi] {
     case (db, types) =>
