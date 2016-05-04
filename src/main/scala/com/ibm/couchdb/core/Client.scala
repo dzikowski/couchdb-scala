@@ -136,7 +136,7 @@ class Client(config: Config) {
       expectedStatus: Status,
       body: B): Task[T] = {
     EntityEncoder[String].toEntity(write(body)) flatMap { entity =>
-      put[T](resource, expectedStatus, entity, "")
+      put[T](resource, expectedStatus, entity, "application/json")
     }
   }
 
