@@ -23,4 +23,13 @@ object Req {
   case class DocKeys[K](keys: Seq[K])
 
   case class ViewWithKeys[K](keys: Seq[K], view: CouchView)
+
+  case class Permissions(cloudant: Map[String, Seq[String]])
+
+  object Permissions {
+    def singleUserReadWrite(user: String): Permissions = {
+      Permissions(cloudant = Map(user -> Seq("_reader", "_writer"), "nobody" -> Nil))
+    }
+  }
+
 }
